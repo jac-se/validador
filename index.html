@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validación de caracteres</title>
+  <style>
+    .invalid {
+      background-color: yellow;
+      color: red;
+    }
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo para el div que ocupa el resto del espacio */
+.rest-of-space {
+    flex: 1;
+}
+  </style>
+</head>
+<body>
+  <h1>Validador de Caracteres</h1>
+  <label for="inputText">Ingrese texto:</label>
+  <BR>
+  <BR>
+    <div class="rest-of-space">
+  <textarea  id="inputText"  oninput="validateText()">
+
+  </textarea>
+</div>
+  <p row="20" cols="50" id="message"></p>
+
+  <script>
+    function validateText() {
+      const input = document.getElementById('inputText').value;
+      const message = document.getElementById('message');
+      const regex = /^[a-zA-Zá-úÁ-Úä-üÄ-Ü0-9#$(=;:\-,.´/%"¨`\s]+$/;
+      const invalidCharRegex = /[^a-zA-Zá-úÁ-Úä-üÄ-Ü0-9#$(=;:\-,.´/%"¨`\s]/g;
+      
+      message.innerHTML = '';
+
+      if (regex.test(input)) {
+        message.innerHTML = 'Texto válido';
+        message.style.color = 'green';
+      } else {
+        let highlightedText = input.replace(invalidCharRegex, match => `<span class="invalid">${match}</span>`);
+        message.innerHTML = `Texto con caracteres inválidos: ${highlightedText}`;
+        message.style.color = 'black';
+      }
+    }
+  </script>
+</body>
+</html>
