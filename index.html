@@ -1,55 +1,440 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Validación de caracteres</title>
-  <style>
-    .invalid {
-      background-color: yellow;
-      color: red;
-    }
-body {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Estilo para el div que ocupa el resto del espacio */
-.rest-of-space {
-    flex: 1;
-}
-  </style>
-</head>
-<body>
-  <h1>Validador de Caracteres</h1>
-  <label for="inputText">Ingrese texto:</label>
-  <BR>
-  <BR>
-    <div class="rest-of-space">
-  <textarea  id="inputText"  oninput="validateText()">
-
-  </textarea>
-</div>
-  <p row="20" cols="50" id="message"></p>
-
-  <script>
-    function validateText() {
-      const input = document.getElementById('inputText').value;
-      const message = document.getElementById('message');
-      const regex = /^[a-zA-Zá-úÁ-Úä-üÄ-Ü0-9#$(=;:\-,.´/%"¨`\s]+$/;
-      const invalidCharRegex = /[^a-zA-Zá-úÁ-Úä-üÄ-Ü0-9#$(=;:\-,.´/%"¨`\s]/g;
-      
-      message.innerHTML = '';
-
-      if (regex.test(input)) {
-        message.innerHTML = 'Texto válido';
-        message.style.color = 'green';
-      } else {
-        let highlightedText = input.replace(invalidCharRegex, match => `<span class="invalid">${match}</span>`);
-        message.innerHTML = `Texto con caracteres inválidos: ${highlightedText}`;
-        message.style.color = 'black';
+  <head>
+    <meta name="google-adsense-account" content="ca-pub-3869251388130168" />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-H4QW7Q5HDG"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
       }
-    }
-  </script>
-</body>
+      gtag("js", new Date());
+      gtag("config", "G-H4QW7Q5HDG");
+    </script>
+
+    <!-- Google AdSense -->
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3869251388130168"
+      crossorigin="anonymous"
+    ></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validación de caracteres</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .main-layout {
+        flex: 1;
+        display: flex;
+        gap: 20px;
+        max-width: 1400px;
+        width: 100%;
+        margin: 0 auto 20px auto;
+      }
+
+      /* Anuncio lateral izquierdo */
+      .ad-sidebar-left {
+        width: 160px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      /* Anuncio lateral derecho */
+      .ad-sidebar-right {
+        width: 160px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .ad-box {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        min-height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #667eea;
+        font-size: 2rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Banner superior */
+      .ad-top-banner {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 10px;
+        padding: 10px;
+        margin: 0 auto 20px auto;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        max-width: 1400px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100px;
+        overflow: hidden;
+      }
+
+      /* Banner inferior */
+      .ad-bottom-banner {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 10px;
+        padding: 10px;
+        margin: 20px auto 0 auto;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        max-width: 1400px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100px;
+        overflow: hidden;
+      }
+
+      label {
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: #555;
+        font-size: 1.1rem;
+      }
+
+      .rest-of-space {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        min-height: 200px;
+      }
+
+      #inputText {
+        width: 100%;
+        height: 100%;
+        padding: 15px;
+        font-size: 16px;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        resize: none;
+        font-family: "Courier New", monospace;
+        transition: all 0.3s ease;
+      }
+
+      #inputText:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+      }
+
+      #inputText.has-errors {
+        border-color: #ff9800;
+        box-shadow: 0 0 10px rgba(255, 152, 0, 0.3);
+      }
+
+      #message {
+        padding: 15px;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        border: 2px solid #e0e0e0;
+        min-height: 60px;
+        line-height: 1.6;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+      }
+
+      .invalid {
+        background-color: #ffeb3b;
+        color: #d32f2f;
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-weight: bold;
+      }
+
+      .valid-message {
+        color: #4caf50;
+        font-weight: bold;
+      }
+
+      footer {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+        max-width: 1400px;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      footer p {
+        margin: 8px 0;
+        color: #555;
+        font-size: 0.95rem;
+      }
+
+      footer a {
+        color: #667eea;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      footer a:hover {
+        color: #764ba2;
+        text-decoration: underline;
+      }
+
+      .copyright {
+        font-weight: bold;
+        color: #333;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1200px) {
+        .ad-sidebar-left,
+        .ad-sidebar-right {
+          display: none;
+        }
+
+        .main-layout {
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 10px;
+        }
+
+        .container {
+          padding: 20px;
+        }
+
+        h1 {
+          font-size: 1.5rem;
+          margin-bottom: 15px;
+        }
+
+        label {
+          font-size: 1rem;
+        }
+
+        #inputText {
+          font-size: 14px;
+          padding: 12px;
+        }
+
+        #message {
+          padding: 12px;
+          font-size: 0.9rem;
+        }
+
+        footer {
+          padding: 15px;
+        }
+
+        footer p {
+          font-size: 0.85rem;
+          margin: 5px 0;
+        }
+
+        .rest-of-space {
+          min-height: 150px;
+        }
+
+        .ad-top-banner,
+        .ad-bottom-banner {
+          min-height: 60px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 1.3rem;
+        }
+
+        .container {
+          padding: 15px;
+        }
+
+        #inputText {
+          font-size: 13px;
+          padding: 10px;
+        }
+
+        footer p {
+          font-size: 0.8rem;
+        }
+
+        .rest-of-space {
+          min-height: 120px;
+        }
+
+        .ad-top-banner,
+        .ad-bottom-banner {
+          padding: 5px;
+          min-height: 50px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Banner Superior (Responsive) -->
+    <div class="ad-top-banner">
+      <ins
+        class="adsbygoogle"
+        style="display: block"
+        data-ad-client="ca-pub-3869251388130168"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
+    </div>
+
+    <div class="main-layout">
+      <!-- Sidebar Izquierdo (160x600) -->
+      <aside class="ad-sidebar-left">
+        <div class="ad-box">
+          <ins
+            class="adsbygoogle"
+            style="display: inline-block; width: 160px; height: 600px"
+            data-ad-client="ca-pub-3869251388130168"
+          ></ins>
+        </div>
+      </aside>
+
+      <!-- Contenido Principal -->
+      <div class="container">
+        <h1>Validador de Caracteres</h1>
+        <label for="inputText">Ingrese texto:</label>
+
+        <div class="rest-of-space">
+          <textarea
+            id="inputText"
+            oninput="validateText()"
+            placeholder="Escribe aquí tu texto..."
+          ></textarea>
+        </div>
+
+        <div id="message"></div>
+      </div>
+
+      <!-- Sidebar Derecho (160x600) -->
+      <aside class="ad-sidebar-right">
+        <div class="ad-box">
+          <ins
+            class="adsbygoogle"
+            style="display: inline-block; width: 160px; height: 600px"
+            data-ad-client="ca-pub-3869251388130168"
+          ></ins>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Banner Inferior (Responsive) -->
+    <div class="ad-bottom-banner">
+      <ins
+        class="adsbygoogle"
+        style="display: block"
+        data-ad-client="ca-pub-3869251388130168"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
+    </div>
+
+    <footer>
+      <p class="copyright">
+        &copy; <span id="currentYear"></span> Jesús Arturo Cisneros Cantero -
+        Todos los derechos reservados
+      </p>
+      <p>Sitio web: <a href="#" id="website">www.ejemplo.com</a></p>
+      <p>
+        Email: <a href="mailto:contacto@ejemplo.com">contacto@ejemplo.com</a>
+      </p>
+    </footer>
+
+    <script>
+      // Actualizar año automáticamente
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+
+      function validateText() {
+        const input = document.getElementById("inputText").value;
+        const inputElement = document.getElementById("inputText");
+        const message = document.getElementById("message");
+        const regex = /^[a-zA-Zá-úÁ-Úä-üÄ-Ü0-9#$(=;:\-,.´/%"¨`\s]*$/;
+        const invalidCharRegex = /[^a-zA-Zá-úÁ-Úä-üÄ-Ü0-9#$(=;:\-,.´/%"¨`\s]/g;
+
+        if (input === "") {
+          message.innerHTML = "Esperando texto...";
+          message.style.color = "#999";
+          inputElement.classList.remove("has-errors");
+          return;
+        }
+
+        if (regex.test(input)) {
+          message.innerHTML =
+            '<span class="valid-message">✓ Texto válido - Todos los caracteres son permitidos</span>';
+          inputElement.classList.remove("has-errors");
+        } else {
+          const invalidChars = input.match(invalidCharRegex);
+          const uniqueInvalidChars = [...new Set(invalidChars)];
+          let highlightedText = input.replace(
+            invalidCharRegex,
+            (match) => `<span class="invalid">${match}</span>`
+          );
+
+          message.innerHTML = `<strong>⚠ Caracteres inválidos encontrados:</strong> ${uniqueInvalidChars
+            .map((c) => `<span class="invalid">${c}</span>`)
+            .join(" ")}<br><br>${highlightedText}`;
+          message.style.color = "#333";
+          inputElement.classList.add("has-errors");
+        }
+      }
+
+      // Inicializar mensaje
+      validateText();
+
+      // Inicializar anuncios de AdSense
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </body>
 </html>
