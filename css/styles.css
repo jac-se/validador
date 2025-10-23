@@ -1,0 +1,237 @@
+/* ===========================
+   Estilos base globales
+   =========================== */
+
+:root {
+  --color-bg: #f5f6fa;
+  --color-primary: #667eea;
+  --color-primary-dark: #4a5ac7;
+  --color-accent: #764ba2;
+  --color-text: #333;
+  --color-muted: #777;
+  --color-valid: #4caf50;
+  --color-warning: #ff9800;
+  --color-invalid-bg: #ffeb3b;
+  --color-invalid-text: #d32f2f;
+  --radius: 10px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Soporte automático de modo oscuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #1e1e2e;
+    --color-primary: #859cff;
+    --color-accent: #a585ff;
+    --color-text: #e0e0e0;
+    --color-muted: #aaa;
+    --color-valid: #9effa6;
+    --color-warning: #ffb74d;
+    --color-invalid-bg: #fff176;
+    --color-invalid-text: #ff5252;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  color: var(--color-text);
+}
+
+/* ===========================
+   Contenedor principal
+   =========================== */
+
+.container {
+  max-width: 900px;
+  width: 100%;
+  background: var(--color-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 30px;
+  flex: 1;
+}
+
+h1 {
+  text-align: center;
+  color: var(--color-primary-dark);
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+}
+
+textarea {
+  width: 100%;
+  min-height: 220px;
+  padding: 15px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: var(--radius);
+  resize: vertical;
+  font-family: "Courier New", monospace;
+  transition: all 0.25s ease;
+  color: var(--color-text);
+  background-color: #fff;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+}
+
+textarea.has-errors {
+  border-color: var(--color-warning);
+  box-shadow: 0 0 10px rgba(255, 152, 0, 0.3);
+}
+
+/* ===========================
+   Mensajes de validación
+   =========================== */
+
+#message {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: var(--radius);
+  background: #f9f9f9;
+  border: 2px solid #e0e0e0;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.valid-message {
+  color: var(--color-valid);
+  font-weight: 600;
+}
+
+.invalid {
+  background: var(--color-invalid-bg);
+  color: var(--color-invalid-text);
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* ===========================
+   Páginas legales
+   =========================== */
+
+.legal {
+  max-width: 900px;
+  width: 100%;
+  background: var(--color-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 40px;
+  margin: 30px auto;
+  line-height: 1.6;
+}
+
+.legal h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: var(--color-primary-dark);
+}
+
+.legal h2 {
+  margin-top: 25px;
+  margin-bottom: 10px;
+  color: var(--color-primary);
+}
+
+.legal p {
+  margin-bottom: 15px;
+  color: var(--color-text);
+}
+
+.legal a {
+  color: var(--color-primary-dark);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.legal a:hover {
+  text-decoration: underline;
+}
+
+/* ===========================
+   Footer
+   =========================== */
+
+footer {
+  width: 100%;
+  max-width: 900px;
+  background: var(--color-bg);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+footer p {
+  margin: 6px 0;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+}
+
+footer a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: var(--color-accent);
+}
+
+/* ===========================
+   Responsividad
+   =========================== */
+
+@media (max-width: 768px) {
+
+  .container,
+  .legal,
+  footer {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  textarea {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  textarea {
+    font-size: 13px;
+  }
+
+  footer p {
+    font-size: 0.85rem;
+  }
+}
