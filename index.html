@@ -3,18 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="google-adsense-account" content="ca-pub-3869251388130168" />
+    <title>Limpiador de Caracteres - JACC Software</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <meta
+      name="description"
+      content="Herramienta gratuita para eliminar caracteres no soportados de textos. Ideal para desarrolladores, copywriters y administrativos."
+    />
     <script
       async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3869251388130168"
-      crossorigin="anonymous"
-    ></script>
-    <title>Validador de Caracteres | JACC Software</title>
-
-    <!-- Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-H4QW7Q5HDG"
+      src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
     ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -22,23 +19,110 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-      gtag("config", "G-H4QW7Q5HDG");
+      gtag("config", "G-XXXXXXXXXX");
     </script>
-
-    <link rel="icon" href="assets/favicon.ico" />
-    <link rel="stylesheet" href="css/styles.css" />
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-xxxxxxxxxxxxxxxx"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-    <main class="container">
-      <h1>Validador de Caracteres</h1>
-      <label for="inputText">Ingrese texto:</label>
-      <textarea
-        id="inputText"
-        oninput="validateText()"
-        placeholder="Escribe aquí tu texto..."
-      ></textarea>
-      <div id="message"></div>
-    </main>
+    <div class="toast" id="toast">
+      <span>✓</span>
+      <span id="toastMessage">Texto copiado al portapapeles</span>
+    </div>
+
+    <div class="header">
+      <h1>Limpiador de Caracteres</h1>
+      <p class="subtitle">Elimina caracteres no soportados de tu texto</p>
+    </div>
+
+    <div class="container">
+      <div class="card">
+        <div class="info-section">
+          <h2>¿Cómo funciona?</h2>
+          <p>
+            Esta herramienta gratuita desarrollada por
+            <strong>JACC Software</strong> elimina automáticamente los
+            caracteres que no son soportados por tu sistema.
+          </p>
+          <ul>
+            <li>Pega o escribe el texto que necesitas limpiar</li>
+            <li>Los caracteres no soportados se detectan automáticamente</li>
+            <li>Obtén el texto limpio listo para usar en tu sistema</li>
+            <li>Copia el resultado con un solo clic</li>
+          </ul>
+        </div>
+
+        <div class="info-section">
+          <h2>Caracteres soportados</h2>
+          <p>
+            <strong>Letras:</strong> a-z, A-Z, con acentos (á, é, í, ó, ú) y
+            diéresis (ä, ö, ü)
+          </p>
+          <p><strong>Números:</strong> 0-9</p>
+          <p>
+            <strong>Símbolos permitidos:</strong>
+            <code># $ ( = ; : - , . ´ / % " ¨ `</code> y espacios
+          </p>
+        </div>
+
+        <div class="info-section">
+          <h2>Preguntas frecuentes (FAQ)</h2>
+          <ul>
+            <li>
+              <strong>¿Qué hace esta herramienta?</strong> Elimina cualquier
+              carácter que no esté en el conjunto permitido.
+            </li>
+            <li>
+              <strong>¿Es gratuita?</strong> Sí, es completamente gratuita y sin
+              registros.
+            </li>
+            <li>
+              <strong>¿Qué uso le puedo dar?</strong> Ideal para validar texto
+              antes de integrarlo en sistemas antiguos, contables o web apps que
+              requieren ASCII limpio.
+            </li>
+          </ul>
+        </div>
+
+        <div class="validator-section">
+          <div class="input-label">
+            <label for="inputText">Texto original:</label>
+            <span class="char-count" id="charCount">0 caracteres</span>
+          </div>
+          <textarea
+            id="inputText"
+            placeholder="Pega o escribe aquí el texto que deseas limpiar...&#10;&#10;Ejemplo: 'Hola 👋 mundo 🌎' se convertirá en 'Hola  mundo '"
+          >
+          </textarea>
+          <div class="status-bar" id="statusBar"></div>
+          <div id="removedChars"></div>
+        </div>
+
+        <div class="output-section">
+          <div class="input-label">
+            <label for="outputText">Texto limpio:</label>
+            <span class="char-count" id="outputCharCount">0 caracteres</span>
+          </div>
+          <textarea
+            id="outputText"
+            readonly
+            placeholder="El texto limpio aparecerá aquí..."
+          >
+          </textarea>
+          <div class="button-group">
+            <button class="btn btn-primary" id="copyBtn" disabled>
+              <span>📋</span> Copiar texto limpio
+            </button>
+            <button class="btn btn-secondary" id="clearBtn" disabled>
+              <span>🗑️</span> Limpiar todo
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <footer>
       <p>
@@ -51,13 +135,12 @@
         <a href="terms.html">Términos y condiciones</a>
       </p>
       <p>
-        Contacto:
-        <a href="mailto:chucho.cisneros@hotmail.com"
-          >chucho.cisneros@hotmail.com</a
-        >
+        Sitio alojado por
+        <a href="https://hostinger.mx?ref=jaccsoft">Hostinger</a>. Recomendado
+        por JACC Software.
       </p>
     </footer>
 
-    <script src="scripts/main.js"></script>
+    <script src="validador.js"></script>
   </body>
 </html>
